@@ -2,6 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_SPAWN_RATE, ASTEROID_MIN_RADIUS, ASTEROID_KINDS, ASTEROID_MAX_RADIUS
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -31,6 +32,10 @@ def main():
                 return
 
         updatable.update(dt)
+        for asteroid in asteroids:
+            if asteroid.did_collide(player):
+                print("Game over!")
+                sys.exit()
 
         screen.fill(color="black")
 
